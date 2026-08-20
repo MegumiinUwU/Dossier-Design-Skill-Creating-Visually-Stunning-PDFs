@@ -95,30 +95,6 @@ Once installed, the skill triggers on requests like *"turn this research into a
 dossier PDF"*, *"make me a briefing document"*, or *"give this PDF a proper
 designed cover"*.
 
-## Use it without an agent
-
-The Python library stands on its own:
-
-```bash
-python skills/dossier-pdf/scripts/new_dossier.py --title "Scarlet Deer Inn" \
-    --preset folk-crimson --motif antlered_head --out build.py
-```
-
-```bash
-python build.py
-```
-
-```bash
-python skills/dossier-pdf/scripts/check_pdf.py scarlet_deer_inn_dossier.pdf
-```
-
-See every bundled motif in your own palette:
-
-```bash
-python skills/dossier-pdf/scripts/preview_cover.py --preset folk-crimson \
-    --all-motifs --out motifs.pdf
-```
-
 ## What is in here
 
 ```
