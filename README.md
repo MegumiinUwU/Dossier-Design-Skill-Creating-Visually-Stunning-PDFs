@@ -1,4 +1,4 @@
-# Dossier PDF — an Agent Skill
+# Dossier PDF: an Agent Skill
 
 Turn researched material into a PDF that looks commissioned: a dark cover whose
 palette and geometric motif are derived from the subject, then dense editorial
@@ -11,9 +11,30 @@ type scale, different soul.
 
 ![Cover and two body pages from the bundled example](skills/dossier-pdf/assets/preview.png)
 
+## Examples
+
+Three dossiers produced end to end by an agent that was asked to research three
+games online in depth, gather the guides and coverage, and turn all of it into
+source material for an eight minute video script on each. Same skill, same type
+scale, three palettes and three motifs pulled from the subjects themselves.
+
+Click any image for full resolution.
+
+**Duskfade**, a clockpunk platformer. Indigo, steel blue and brass, with a stopwatch.
+
+![Duskfade dossier: cover, contents page and fact sheet](screenshots/duskfade.png)
+
+**Scarlet Deer Inn**, embroidered folk horror. Plum, moss and crimson, with an antlered head.
+
+![Scarlet Deer Inn dossier: cover, contents page and character tables](screenshots/scarlet-deer-inn.png)
+
+**Sally Face**, psychological horror. Indigo, blue and pink, with a stitched mask.
+
+![Sally Face dossier: cover, contents page and developer profile](screenshots/sally-face.png)
+
 ## Install
 
-### Simplest — just ask your agent
+### Simplest: just ask your agent
 
 Paste this to Claude Code, Cursor, or any agent that can read a repo:
 
@@ -131,9 +152,6 @@ Bumps the version in all four manifests, checks they agree, validates every
 and writes `dist/dossier-pdf.zip` with `SKILL.md` at its root. Use
 `--validate-only` in CI.
 
-## Credit
+## License
 
-Built from three research dossiers whose covers, palettes and typography set the
-standard this skill generalises.
-
-MIT licensed.
+MIT.
