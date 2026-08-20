@@ -100,6 +100,8 @@ designed cover"*.
 ```
 .claude-plugin/                   Claude Code plugin + marketplace manifests
 .cursor-plugin/                   Cursor plugin + marketplace manifests
+.github/workflows/validate.yml    CI: validates and builds on every push
+CHANGELOG.md                      what changed in each release
 scripts/
   package_skill.py                validate every manifest, build the release zip
 skills/dossier-pdf/
@@ -127,10 +129,13 @@ skills/dossier-pdf/
 python scripts/package_skill.py --version 1.1.0 --clean
 ```
 
-Bumps the version in all four manifests, checks they agree, validates every
-`SKILL.md` (frontmatter limits, body length, that linked reference files exist),
-and writes `dist/dossier-pdf.zip` with `SKILL.md` at its root. Use
-`--validate-only` in CI.
+Bumps every version field across the four manifests, checks they all agree,
+validates every `SKILL.md` (frontmatter limits, body length, that linked
+reference files exist), and writes `dist/dossier-pdf.zip` with `SKILL.md` and
+the licence at its root. `--validate-only` runs the checks alone, which is what
+CI does on every push.
+
+Release notes go in [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 

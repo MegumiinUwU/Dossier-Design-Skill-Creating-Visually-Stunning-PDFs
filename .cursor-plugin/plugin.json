@@ -1,6 +1,6 @@
 {
   "name": "dossier-pdf",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Builds research dossiers and briefing documents as designed PDFs. A dark cover whose palette and geometric motif are derived from the subject, then dense editorial body pages with themed tables, callout boxes and running header/footer furniture. Ships a ReportLab builder library, 21 cover motifs, seven subject palettes, a cover preview and motif contact sheet, a build scaffold, and a pre-ship verifier.",
   "author": {
     "name": "MegumiinUwU"

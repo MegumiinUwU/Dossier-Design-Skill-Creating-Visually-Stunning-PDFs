@@ -1,0 +1,54 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install reportlab pymupdf
+
+      - name: Validate manifests and every SKILL.md
+        run: python scripts/package_skill.py --validate-only
+
+      - name: Build the bundled example
+        run: python skills/dossier-pdf/assets/example_dossier.py
+
+      - name: Verify the built PDF
+        run: |
+          python skills/dossier-pdf/scripts/check_pdf.py \
+            skills/dossier-pdf/assets/example_dossier.pdf \
+            --expect "Quick Fire" --expect "Sources"
+
+      - name: Scaffold, build and verify a fresh dossier
+        run: |
+          python skills/dossier-pdf/scripts/new_dossier.py \
+            --title "CI Smoke Test" --preset lab-teal --motif flask \
+            --out /tmp/build_ci.py
+          cd /tmp && python build_ci.py
+          python "$GITHUB_WORKSPACE/skills/dossier-pdf/scripts/check_pdf.py" \
+            /tmp/ci_smoke_test_dossier.pdf --expect "Sources"
+
+      - name: Render every motif
+        run: |
+          python skills/dossier-pdf/scripts/preview_cover.py \
+            --preset folk-crimson --all-motifs --out /tmp/motifs.pdf
+
+      - name: Package the release zip
+        run: python scripts/package_skill.py --clean
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dossier-pdf-zip
+          path: dist/dossier-pdf.zip

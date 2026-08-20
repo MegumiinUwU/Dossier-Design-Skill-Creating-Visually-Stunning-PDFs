@@ -27,12 +27,16 @@ ROOT = Path(__file__).resolve().parent.parent
 SKILLS_DIR = ROOT / "skills"
 DIST = ROOT / "dist"
 
-# Every file that carries a version, and the JSON path to it.
+# Every file that carries a version, and EVERY JSON path to one inside it.
+# A manifest can carry more than one: the Cursor marketplace stamps a version
+# on the marketplace itself as well as on the plugin entry, and a version that
+# is not listed here is a version that silently goes stale.
 MANIFESTS = {
-    ".claude-plugin/plugin.json": ("version",),
-    ".claude-plugin/marketplace.json": ("plugins", 0, "version"),
-    ".cursor-plugin/plugin.json": ("version",),
-    ".cursor-plugin/marketplace.json": ("plugins", 0, "version"),
+    ".claude-plugin/plugin.json": [("version",)],
+    ".claude-plugin/marketplace.json": [("plugins", 0, "version")],
+    ".cursor-plugin/plugin.json": [("version",)],
+    ".cursor-plugin/marketplace.json": [("metadata", "version"),
+                                        ("plugins", 0, "version")],
 }
 
 EXCLUDE_DIRS = {"__pycache__", ".git", ".pytest_cache", ".ipynb_checkpoints"}
@@ -127,16 +131,18 @@ def validate():
 
     # --- manifests parse, and all versions agree -------------------------
     versions, names = {}, {}
-    for rel, vpath in MANIFESTS.items():
+    for rel, vpaths in MANIFESTS.items():
         data, err = load_json(rel)
         if err:
             errors.append(err)
             continue
-        v = dig(data, vpath)
-        if v is None:
-            errors.append(f"{rel}: no version at {'.'.join(map(str, vpath))}")
-        else:
-            versions[rel] = v
+        for vpath in vpaths:
+            label = f"{rel}:{'.'.join(map(str, vpath))}"
+            v = dig(data, vpath)
+            if v is None:
+                errors.append(f"{rel}: no version at {'.'.join(map(str, vpath))}")
+            else:
+                versions[label] = v
         if rel.endswith("plugin.json"):
             names[rel] = data.get("name")
         else:
@@ -219,13 +225,17 @@ def set_version(new: str):
     """Write `new` into every manifest so they cannot drift."""
     if not re.match(r"^\d+\.\d+\.\d+$", new):
         raise SystemExit(f"version must be semver like 1.0.0, got {new!r}")
-    for rel, vpath in MANIFESTS.items():
+    for rel, vpaths in MANIFESTS.items():
         p = ROOT / rel
         data = json.loads(p.read_text(encoding="utf-8"))
-        assign(data, vpath, new)
+        for vpath in vpaths:
+            if dig(data, vpath) is None:
+                raise SystemExit(f"{rel}: no version at "
+                                 f"{'.'.join(map(str, vpath))} to set")
+            assign(data, vpath, new)
         p.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n",
                      encoding="utf-8")
-        print(f"  set {rel} -> {new}")
+        print(f"  set {rel} -> {new}  ({len(vpaths)} field(s))")
 
 
 def build_zip(skill_dir: Path, version: str) -> Path:
@@ -238,6 +248,12 @@ def build_zip(skill_dir: Path, version: str) -> Path:
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for f in iter_files(skill_dir):
             z.write(f, f.relative_to(skill_dir).as_posix())
+            n += 1
+        # The skill travels on its own once uploaded, so it carries its licence
+        # with it rather than relying on whoever downloaded it to remember.
+        repo_license = ROOT / "LICENSE"
+        if not (skill_dir / "LICENSE").exists() and repo_license.exists():
+            z.write(repo_license, "LICENSE")
             n += 1
     print(f"  {out.relative_to(ROOT).as_posix()}  ({n} files, "
           f"{out.stat().st_size / 1024:.0f} KB)")

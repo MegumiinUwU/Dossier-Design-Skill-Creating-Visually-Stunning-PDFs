@@ -146,8 +146,13 @@ class Theme:
             grey=tint(deep, l=0.44, s_mul=0.25),
             rule=tint(deep, l=0.851, s_mul=0.55),
             boxbg=tint(deep, l=0.969, s_mul=1.40),
-            quotebg=tint(accent, l=0.955, s=min(1.0, as_ * 0.65)),
-            warnbg=tint(alt, l=0.963, s=min(1.0, ls * 1.15)),
+            # The saturation floors keep the three callout fills telling each
+            # other apart. Without them a desaturated accent or alt produces a
+            # tint that is indistinguishable from the neutral boxbg, and the
+            # box types stop reading as different. Saturated seeds are well
+            # above the floors, so this changes nothing for them.
+            quotebg=tint(accent, l=0.955, s=max(0.22, min(1.0, as_ * 0.65))),
+            warnbg=tint(alt, l=0.963, s=max(0.28, min(1.0, ls * 1.15))),
             cover_title="#FFFFFF",
             cover_sub=tint(deep, l=0.81, s_mul=0.75),
             cover_blurb=tint(deep, l=0.62, s_mul=0.55),

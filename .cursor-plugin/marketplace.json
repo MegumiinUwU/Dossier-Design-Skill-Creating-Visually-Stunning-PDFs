@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Document design skills that turn research into PDFs which look commissioned rather than generated.",
-    "version": "1.0.0"
+    "version": "1.2.0"
   },
   "plugins": [
     {
       "name": "dossier-pdf",
       "source": ".",
       "description": "Builds research dossiers and briefing documents as designed PDFs: a dark cover with a subject-derived palette and geometric motif, then dense editorial body pages.",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "license": "MIT",
       "category": "productivity",
       "keywords": [
