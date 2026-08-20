@@ -13,16 +13,10 @@ type scale, different soul.
 
 ## Examples
 
-Three dossiers produced end to end by an agent that was asked to research three
-games online in depth, gather the guides and coverage, and turn all of it into
-source material for an eight minute video script on each. Same skill, same type
-scale, three palettes and three motifs pulled from the subjects themselves.
+Four dossiers, four subjects. Every palette and every motif is pulled from the
+subject itself. Click any image for full resolution.
 
-Click any image for full resolution.
-
-**Duskfade**, a clockpunk platformer. Indigo, steel blue and brass, with a stopwatch.
-
-![Duskfade dossier: cover, contents page and fact sheet](screenshots/duskfade.png)
+### Using the skill on Claude Opus 5, from data I collected about the games
 
 **Scarlet Deer Inn**, embroidered folk horror. Plum, moss and crimson, with an antlered head.
 
@@ -31,6 +25,16 @@ Click any image for full resolution.
 **Sally Face**, psychological horror. Indigo, blue and pink, with a stitched mask.
 
 ![Sally Face dossier: cover, contents page and developer profile](screenshots/sally-face.png)
+
+### Using Cursor on Grok 4.6, which handled the online research, the writing and the styling
+
+**One Piece**, twenty six years of weekly animation. Navy and red, with a straw hat.
+
+![One Piece dossier: cover, contents page and crew profiles](screenshots/one-piece.png)
+
+**The AI Bubble**, a briefing on the investment cycle. Near black and amber, with a chart.
+
+![The AI Bubble dossier: cover, contents page and fact sheet](screenshots/ai-bubble.png)
 
 ## Install
 
