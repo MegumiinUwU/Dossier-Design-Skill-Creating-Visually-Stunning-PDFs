@@ -1,0 +1,27 @@
+{
+  "name": "dossier-design",
+  "description": "Document design skills that turn research into PDFs which look commissioned rather than generated.",
+  "owner": {
+    "name": "MegumiinUwU",
+    "url": "https://github.com/MegumiinUwU"
+  },
+  "plugins": [
+    {
+      "name": "dossier-pdf",
+      "source": {
+        "source": "github",
+        "repo": "MegumiinUwU/Dossier-Design-Skill-Creating-Visually-Stunning-PDFs"
+      },
+      "description": "Builds research dossiers and briefing documents as designed PDFs: a dark cover with a subject-derived palette and geometric motif, then dense editorial body pages.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": [
+        "pdf",
+        "dossier",
+        "research",
+        "document-design",
+        "reportlab"
+      ]
+    }
+  ]
+}

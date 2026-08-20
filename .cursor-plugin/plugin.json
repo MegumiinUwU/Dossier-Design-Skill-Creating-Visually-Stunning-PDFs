@@ -1,0 +1,27 @@
+{
+  "name": "dossier-pdf",
+  "version": "1.0.0",
+  "description": "Builds research dossiers and briefing documents as designed PDFs. A dark cover whose palette and geometric motif are derived from the subject, then dense editorial body pages with themed tables, callout boxes and running header/footer furniture. Ships a ReportLab builder library, 21 cover motifs, seven subject palettes, a cover preview and motif contact sheet, a build scaffold, and a pre-ship verifier.",
+  "author": {
+    "name": "MegumiinUwU"
+  },
+  "homepage": "https://github.com/MegumiinUwU/Dossier-Design-Skill-Creating-Visually-Stunning-PDFs",
+  "repository": "https://github.com/MegumiinUwU/Dossier-Design-Skill-Creating-Visually-Stunning-PDFs",
+  "license": "MIT",
+  "skills": "skills",
+  "keywords": [
+    "pdf",
+    "dossier",
+    "report",
+    "research",
+    "briefing",
+    "document-design",
+    "reportlab",
+    "typography",
+    "cover-design",
+    "layout",
+    "palette",
+    "theming",
+    "publishing"
+  ]
+}
