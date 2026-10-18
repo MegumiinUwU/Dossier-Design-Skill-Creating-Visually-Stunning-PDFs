@@ -139,4 +139,4 @@ Release notes go in [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
-MIT.
+MIT. See [LICENSE](LICENSE) for the full text.
